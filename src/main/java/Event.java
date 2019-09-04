@@ -2,7 +2,7 @@ public class Event extends Task {
     private String type = "E";
 
     public Event(String description) throws DukeException {
-        String[] split = description.split("\\s+/at\\s+");
+        String[] split = description.split(Parser.event);
         if (split.length < 2) {
             throw new DukeException("Please use /at to indicate date");
         }
@@ -11,25 +11,15 @@ public class Event extends Task {
         }
         else {
             this.description = split[0];
-            this.dueDate = split[1];
+            this.readDate(split[1]);
             this.isDone = false;
-            counter++;
-            System.out.println("Got it. I've added this task:\n  " +
-                    this.toList() +
-                    "\nNow you have " + this.numTasksCreated() + " tasks in the list.");
         }
     }
 
-    public Event(String bool, String description, String dueDate)
-    {
+    public Event(String bool, String description, String dueDate) throws DukeException {
         this.description = description;
-        this.dueDate = dueDate;
+        this.readDate(dueDate);
         this.isDone = (1 == Integer.parseInt(bool));
-        counter++;
-    }
-
-    public String getDueDate() {
-        return dueDate;
     }
 
     @Override

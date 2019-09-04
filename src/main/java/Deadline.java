@@ -2,7 +2,7 @@ public class Deadline extends Task {
     protected String type = "D";
 
     public Deadline(String description) throws DukeException {
-        String[] split = description.split("\\s+/by\\s+");
+        String[] split = description.split(Parser.deadline);
         if(split.length < 2)
         {
             throw new DukeException("Please use /by to indicate date");
@@ -13,21 +13,15 @@ public class Deadline extends Task {
         }
         else {
             this.description = split[0];
-            this.dueDate = split[1];
+            this.readDate(split[1]);
             this.isDone = false;
-            counter++;
-            System.out.println("Got it. I've added this task:\n  " +
-                    this.toList() +
-                    "\nNow you have " + this.numTasksCreated() + " tasks in the list.");
         }
     }
 
-    public Deadline(String bool, String description, String dueDate)
-    {
+    public Deadline(String bool, String description, String dueDate) throws DukeException {
         this.description = description;
-        this.dueDate = dueDate;
+        this.readDate(dueDate);
         this.isDone = (1 == Integer.parseInt(bool));
-        counter++;
     }
 
     @Override
