@@ -1,7 +1,3 @@
-import java.io.*;
-import java.net.URL;
-import java.util.Scanner;
-
 public class Duke {
     private Tasklist taskList;
     private UI ui;
@@ -43,7 +39,7 @@ public class Duke {
         }
     }
     public static void main(String[] args) {
-        /* Writing Level-1.... */
+        /* Writing Level-2.... */
         new Duke("list.txt").run();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
