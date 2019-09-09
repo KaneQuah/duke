@@ -39,7 +39,7 @@ public class Duke {
         }
     }
     public static void main(String[] args) {
-        /* Writing A-Classes.... */
+        /* Writing A-Inheritances.... */
         new Duke("list.txt").run();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
