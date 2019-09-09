@@ -1,36 +1,50 @@
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class Task {
-    protected String description;
-    protected boolean isDone;
-    protected String dueDate;
-    public static long counter = 0;
+    String description;
+    boolean isDone;
+    //protected String dueDate;
+    private Date dueDate = null;
+    private static DateFormat dateFormatter = new SimpleDateFormat("E");
 
-    public Task(String description) {
+    Task(String description) {
         this.description = description;
         this.isDone = false;
-        counter++;
     }
-    public Task(){
-
+    Task(){
+    }
+    void readDate(String date) throws DukeException {
+        try {
+            this.dueDate = dateFormatter.parse(date);
+        }
+        catch(ParseException e)
+        {
+            throw new DukeException("Please use DDD format for date");
+        }
     }
 
-
-    public long numTasksCreated(){
-        return counter;
-    }
-
-    public String getStatusIcon() {
+    String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
-
-    public void markDone(){
-        this.isDone = true;
+    void markDone() throws DukeException {
+        if(this.isDone){
+            throw new DukeException("But good sir, this task is already done!");
+        }
+        else
+            this.isDone = true;
     }
-    public boolean checkCompletion() {return this.isDone;}
+    boolean checkCompletion() {return this.isDone;}
     public String getType(){ return "G";}
-    public String getDescription() {
+    String getDescription() {
         return this.description;
     }
-    public String getDueDate() { return this.dueDate; }
+    String getDueDate() {
+        if(this.dueDate != null)
+            return dateFormatter.format(this.dueDate);
+        else
+            return ""; }
 
     public String toList(){
         return "[?][" + this.getStatusIcon() + "] " + this.getDescription();

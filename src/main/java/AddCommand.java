@@ -1,3 +1,14 @@
 public class AddCommand extends Command {
-    public AddCommand(String x){};
+    private String arguments;
+    private String command;
+    AddCommand(String command, String arguments){
+        this.command = command;
+        this.arguments = arguments;
+    }
+
+    @Override
+    public void execute(Tasklist tasks, UI ui, Storage storage) throws DukeException {
+        tasks.add(this.command, this.arguments);
+    }
+
 }
