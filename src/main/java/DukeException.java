@@ -1,3 +1,7 @@
+/**
+ * DukeException Class
+ * Nothing much
+ */
 public class DukeException extends Exception {
     public DukeException(String ErrorMessage)
     {

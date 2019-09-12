@@ -1,14 +1,32 @@
 import java.io.*;
 import java.net.URL;
 
+/**
+ * Storage class
+ * Looks for file in certain folder to be parsed,
+ * then it is opened, same file is overwritten.
+ *
+ * @author Kane Quah
+ * @version 1.0
+ * @since 08/19
+ */
 class Storage {
     private File f;
     private String input = "";
     Storage(String filePath){
-        URL path = Duke.class.getResource(filePath);
-        this.f = new File(path.getFile());
+        //URL path = Duke.class.getResource(filePath);
+        //forDuke
+        String file = "../../data/" + filePath;
+        //for runTest
+        //String file = "../data/" + filePath;
+        this.f = new File(file);
         /*encoding is ANSI */
     }
+
+    /**
+     * This method reads the file.
+     * @return String this returns the file's lines separated by "\\n" line symbols.
+     */
     String load(){
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(f))) {
             String line = bufferedReader.readLine();
@@ -25,6 +43,10 @@ class Storage {
         }
         return this.input;
     }
+    /**
+     * This method overwrites the file.
+     * It overwrites using the data stored in TaskList currently
+     */
     void store(Tasklist list) throws DukeException {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.f))) {
             for(int i = 0; i< list.size(); i++) {

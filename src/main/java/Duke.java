@@ -15,32 +15,22 @@ public class Duke {
     private void run() {
         ui.showWelcome();
         boolean isExit = false;
-        while(!isExit)
-        {
+        while(!isExit) {
             try {
                 String line = ui.readCommand();
                 ui.showLine();
                 Command c = Parser.parse(line);
-                c.execute(this.taskList, this.ui, this.storage);
                 isExit = c.isExit();
-            }catch (DukeException | NullPointerException e) {
+                c.execute(this.taskList, this.ui, this.storage);
+            } catch (DukeException | NullPointerException e) {
                 ui.showError(e.getLocalizedMessage());
             } finally {
                 ui.showLine();
             }
         }
-        try {
-            ui.close();
-            storage.store(this.taskList);
-        }
-        catch(DukeException e)
-        {
-            ui.showError(e.getLocalizedMessage());
-        }
     }
     public static void main(String[] args) {
-        /* Writing A-MoreOOPs.... */
-        new Duke("list.txt").run();
+        new Duke("duke.txt").run();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"

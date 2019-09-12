@@ -2,10 +2,27 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Tasklist stores an arraylist of tasks and performs actions on tasks
+ * Actions: Modify/Remove/Add Tasks
+ * @author Kane Quah
+ * @version 1.0
+ * @since 08/19
+ */
 class Tasklist {
     private ArrayList<Task> list = new ArrayList<>();
     Tasklist(){}
+
+    /**
+     * Overloaded Initializer which accepts a String Parameter with data
+     * @param input String with data separated by newline characters
+     * @throws DukeException DukeException Thrown when input is empty or data format is wrong
+     */
     Tasklist(String input) throws DukeException {
+        if(input.isBlank())
+        {
+            throw new DukeException("File was blank");
+        }
         String[] splitTasks = input.split(Parser.newLine);
         try {
             for (int i = 0; i < splitTasks.length; i++) {
@@ -32,13 +49,29 @@ class Tasklist {
         }
     }
 
+    /**
+     * Fetches current size of Arraylist
+     * @return long size of ArrayList
+     */
     long size(){
         return list.size();
     }
+
+    /**
+     * Out of Bounds checker
+     * @param request int The index to be checked if it exists
+     * @return boolean true if within range, false if not
+     */
     private boolean isOutOfRange(int request){
         return ((request < 0) || (request >= this.size()));
     }
 
+    /**
+     * Mark a Task as Done
+     * @param input String which should be an Int type
+     * @throws DukeException DukeException thrown when An incorrect type input is given
+     *                          or the requested index is out of range
+     */
     void markDone(String input) throws DukeException {
         try {
             int request = Integer.parseInt(input);
@@ -60,6 +93,13 @@ class Tasklist {
             throw new DukeException("That is NOT a valid integer");
         }
     }
+
+    /**
+     * Sends a Task to the Shadow Realm
+     * @param input String which should be an Int type
+     * @throws DukeException DukeException thrown when An incorrect type input is given
+     *                          or the requested index is out of range
+     */
     void banishDelete(String input) throws DukeException {
         try {
             int request = Integer.parseInt(input);
@@ -82,12 +122,26 @@ class Tasklist {
             throw new DukeException("That is NOT a valid integer");
         }
     }
+
+    /**
+     * Fetches a Task from the ArrayList, given an index
+     * @param index int index of Task within ArrayList
+     * @return Task Task within ArrayList
+     * @throws DukeException DukeException thrown when Task is not found within list
+     */
     Task get(int index) throws DukeException {
         if(!this.isOutOfRange(index))
             return this.list.get(index);
         else
             throw new DukeException("Requested Task not found within list");
     }
+
+    /**
+     * Adds another task to the list, given the inputs;
+     * @param type String indicating what type of Task should be added
+     * @param input raw secondary input to be processed by the method
+     * @throws DukeException
+     */
     void add(String type, String input) throws DukeException {
         Task temp;
         try {
@@ -113,6 +167,12 @@ class Tasklist {
             throw new DukeException(e.getLocalizedMessage());
         }
     }
+
+    /**
+     * Finds a Task if any part of its description/date matches the input
+     * @param input String to be matches to description/date
+     * @throws DukeException DukeException to be thrown when errors occur somehow
+     */
     void find(String input) throws DukeException {
         ArrayList<Integer> FoundIndex = new ArrayList<>();
         for (int i = 0; i < this.size(); i++)
@@ -132,6 +192,11 @@ class Tasklist {
             }
         }
     }
+
+    /**
+     * Prints out all tasks in list
+     * If list is empty, prints out message stating that it is empty
+     */
     void print() {
         if (this.size() == 0) {
             System.out.println("Whoops, there doesn't seem to be anything here at the moment");

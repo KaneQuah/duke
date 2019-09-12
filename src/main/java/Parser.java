@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * Parser class
+ * Handles Raw Input and determines if it is a valid command
+ * If not a valid command, it will return a BadCommand
+ */
 class Parser {
     static String deadline = "\\s*/by\\s*";
     static String event = "\\s*/at\\s*";
@@ -7,6 +12,12 @@ class Parser {
     static String newLine = "\n";
     Parser(){}
 
+    /**
+     * Returns the appropiate command based on line input
+     * @param line String which is the next line of input
+     * @return Command
+     * @throws DukeException
+     */
     static Command parse(String line) throws DukeException {
         Scanner temp = new Scanner(line);
         if(!temp.hasNext()){
@@ -54,8 +65,6 @@ class Parser {
                 }
             }
         }
-        else
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        return null;
+        return new BadCommand("bad", "");
     }
 }
