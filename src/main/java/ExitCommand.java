@@ -10,11 +10,11 @@ public class ExitCommand extends Command {
         this.exit = true;
     }
     /**
-     * default execute overwritten to add tasks to function
-     * @param tasks TasksList Object being used currently
-     * @param ui UI in charge of printing messages
-     * @param storage Storage in charge of loading and saving files
-     * @throws DukeException DukeException thrown when unable to execute
+     * overwrites default execute to exit
+     * @param tasks TasksList has tasks
+     * @param ui UI prints messages
+     * @param storage Storage loads and saves files
+     * @throws DukeException DukeException throws exception
      */
     public void execute(Tasklist tasks, UI ui, Storage storage) throws DukeException {
         boolean isClose = true;

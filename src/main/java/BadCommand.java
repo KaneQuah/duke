@@ -10,11 +10,11 @@ public class BadCommand extends Command {
     }
 
     /**
-     * default execute overwritten to throw errors
-     * @param tasks TasksList Object being used currently
-     * @param ui UI in charge of printing messages
-     * @param storage Storage in charge of loading and saving files
-     * @throws DukeException DukeException instantly thrown
+     * overwrites default execute to throw errors
+     * @param tasks TasksList has tasks
+     * @param ui UI prints messages
+     * @param storage Storage loads and saves files
+     * @throws DukeException DukeException throws exception
      */
     public void execute(Tasklist tasks, UI ui, Storage storage) throws DukeException {
         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

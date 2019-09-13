@@ -5,7 +5,6 @@ import java.net.URL;
  * Storage class
  * Looks for file in certain folder to be parsed,
  * then it is opened, same file is overwritten.
- *
  * @author Kane Quah
  * @version 1.0
  * @since 08/19

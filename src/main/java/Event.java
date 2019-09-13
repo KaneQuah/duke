@@ -23,9 +23,9 @@ public class Event extends Task {
 
     /**
      * Overloaded constructor which reads in a task from file
-     * @param bool String which should be 1 or 0, describing if the Task is done or not
-     * @param description String which contains description of Task
-     * @param dueDate String which contains the date in correct format
+     * @param bool String should be 1 or 0, describes if the Task is done or not
+     * @param description String contains description of Task
+     * @param dueDate String contains the date in correct format
      */
     public Event(String bool, String description, String dueDate) throws DukeException {
         this.description = description;

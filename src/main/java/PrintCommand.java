@@ -9,7 +9,7 @@ public class PrintCommand extends Command {
     PrintCommand() {    }
 
     /**
-     * default execute overwritten to print task in tasks
+     * overwrites default execute to print task in tasks
      * @param tasks TasksList Object being used currently
      * @param ui UI in charge of printing messages
      * @param storage Storage in charge of loading and saving files
